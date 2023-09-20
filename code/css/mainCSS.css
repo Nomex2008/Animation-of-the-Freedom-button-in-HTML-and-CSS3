@@ -4,6 +4,8 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    background-color: black;
 }
 
 .wrapper {
@@ -21,7 +23,29 @@ html {
     position: relative;
     display: inline-block;
 }
+.button:before,
+.button:after{
+    content: '';
 
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    border: 3px solid #261f86;
+    top: -30px;
+    left: 50%;
+    z-index: 1;
+
+    margin-left: -40px;
+
+    transition: all 1s ease;
+    pointer-events: none;
+}
+.button:after {
+    animation: rotate 15s infinite linear;
+}
+.button::before {
+    animation: rotate 20s infinite linear;
+}
 .btn__taxt {
     position: relative;
     height: 80px;
@@ -32,9 +56,9 @@ html {
     border-radius: 50px;
     font-size: 24px;
     text-transform: uppercase;
-    color: rgba(0, 0, 0, .3);
+    color: rgba(0, 0, 0, 1);
     letter-spacing: 10px;
-    transition: all .3s ease;
+    transition: all 1s ease;
     top: 0;
 
     overflow: hidden;
@@ -51,11 +75,49 @@ html {
 }
 .btn__taxt::before {
     left: 0;
+    z-index: 2;
+
+    transition: all 1s ease;
 }
 .btn__taxt::after {
     right: 0;
+    transition: all 1s ease;
 }
 .btn__taxt span{
     position: relative;
-    z-index: 1;
+    z-index: 5;
+}
+/*hover*/
+
+.button:hover:before,
+.button:hover::after {
+    left: 100%;
+    opacity: 0;
+}
+
+.button:hover .btn__taxt {
+    top: -10px;
+    box-shadow:  0 5px 0 0 #0c5b52;
+}
+.button:active .btn__taxt {
+    transition: all .2s;
+    top: -6px;
+    box-shadow:  0 1px 0 0 #0c5b52;
+}
+.button:hover .btn__taxt::before {
+    width: 100%;
+}
+
+.button:hover .btn__taxt::before,
+.button:hover .btn__taxt::after {
+    background-color: aqua;
+}
+/*keyframes*/
+@keyframes rotate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
 }
